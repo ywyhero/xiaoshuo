@@ -44,7 +44,7 @@ module.exports = {
     // css相关配置
     css: {
         // 启用 CSS modules
-        modules: false,
+        requireModuleExtension: false,
         // 是否使用css分离插件
         extract: true,
         // 开启 CSS source maps?
