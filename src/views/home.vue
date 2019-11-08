@@ -6,63 +6,78 @@
                 <span class="titl-des">高分小说聚集地</span>
             </div>
             <div class="search">
-                <input type="text" placeholder="请输入您想看的小说名称" class="search-input"/>
+                <input type="text" placeholder="请输入您想看的小说名称" class="search-input">
                 <div class="search-btn">
-                    <img class="search-img" src="./../assets/images/search.png" alt="">
+                    <img class="search-img" src="./../assets/images/search.png" alt>
                 </div>
             </div>
         </div>
-        <div class="books" v-for="itm in 5" :key="itm">
-             <div class="type">
-                <span class="type-val">经典完本</span>
+        <div class="books" v-for="(item, index) in books" :key="index">
+            <div class="type">
+                <span class="type-val">{{item.title}}</span>
                 <span class="type-more">更多</span>
             </div>
             <div class="lists">
-                <div class="list" v-for="item in 6" :key="item">
+                <div class="list" @click="toChapter(itm)" v-for="(itm, idx) in item.lists" :key="idx">
                     <div class="list-left">
-                        <img src="http://47.105.109.192:3000/upload/dazhuzai1571800180.jpg" alt="" class="list-img">
+                        <img
+                        :src="itm.imgUrl"
+                        :alt="itm.name"
+                        class="list-img"
+                        >
                     </div>
                     <div class="list-right">
-                        <span class="list-title">超级全能系统</span>
-                        <span class="list-des">
-                            一次意外却让夜凡激活了一个全能系统，从此...“系统，给我弄点钱花...”“系统，给我变成世界第一给我变成世界第一
-                        </span>
+                            <span class="list-title">{{itm.name}}</span>
+                            <span class="list-des">{{itm.description}}</span>
                         <div class="list-bottom">
-                            <span class="list-name">拔丝地瓜</span>
-                            <span class="list-type">都市娱乐</span>
+                            <span class="list-name">{{itm.author}}</span>
+                            <span class="list-type">{{itm.typeName}}</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-       
     </div>
 </template>
-<script lang="ts">
+<script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator';
-export default class Index extends Vue {}
+import Common from '../service/common';
+@Component({})
+export default class Home extends Vue {
+    private books: object[] = [];
+    public created() {
+        this.getBooks();
+    }
+    private async getBooks() {
+        const data: any = await Common.getBooks({});
+        this.books = data.books;
+    }
+    private toChapter(item: any) {
+        this.$router.push(`/chapter?bookId=${item.bookId}&name=${item.name}&typeName=${item.typeName}&isOver=${item.isOver}&imgUrl=${item.imgUrl}&description=${item.description}&author=${item.author}`);
+    }
+}
 </script>
 <style lang="less" scoped>
-.main{
+.main {
     width: 1200px;
     margin: 0 auto;
 }
-.header{
+.header {
     padding: 30px 0 0px;
     display: flex;
     align-items: center;
 }
-.header.active{
+.header.active {
     position: fixed;
     left: 0;
     top: 0;
     height: 60px;
     background: #fafafa;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
     width: 100%;
     z-index: 99;
 }
-.title{
+.title {
     color: #d32f2f;
     font-size: 32px;
     font-weight: 700;
@@ -71,11 +86,11 @@ export default class Index extends Vue {}
     align-items: center;
     justify-content: center;
 }
-.titl-des{
+.titl-des {
     font-size: 16px;
     font-weight: normal;
 }
-.search{
+.search {
     border: 1px solid #e0e0e0;
     border-top-left-radius: 2px;
     border-bottom-left-radius: 2px;
@@ -89,10 +104,10 @@ export default class Index extends Vue {}
     margin: 0 auto;
     display: flex;
 }
-.search-input{
+.search-input {
     width: 100%;
 }
-.search-btn{
+.search-btn {
     width: 40px;
     height: 34px;
     display: flex;
@@ -101,21 +116,21 @@ export default class Index extends Vue {}
     justify-content: center;
     background: #d32f2f;
 }
-.books{
+.books {
     margin-top: 40px;
 }
-.lists{
+.lists {
     display: flex;
     flex-wrap: wrap;
 }
-.type{
+.type {
     border-bottom: 1px solid #e6e6e6;
     line-height: 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.type-more{
+.type-more {
     font-size: 12px;
     color: #999;
     letter-spacing: 1px;
@@ -124,41 +139,42 @@ export default class Index extends Vue {}
     padding-right: 8px;
     cursor: pointer;
 }
-.type-val{
+.type-val {
     font-weight: 700;
     font-size: 18px;
     color: #333;
     letter-spacing: 1px;
 }
-.list{
+.list {
     width: 332px;
     height: 128px;
     margin: 30px 0 10px;
     display: flex;
     margin-right: 102px;
+    cursor: pointer;
 }
 .list:nth-of-type(3n) {
     margin-right: 0;
 }
-.list-left{
+.list-left {
     width: 95px;
     height: 126px;
     margin-right: 15px;
 }
-.list-img{
+.list-img {
     width: 95px;
     height: 126px;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
     border-radius: 4px;
     overflow: hidden;
 }
-.list-right{
+.list-right {
     display: flex;
     flex-direction: column;
     width: 222px;
     height: 100%;
 }
-.list-title{
+.list-title {
     line-height: 21px;
     font-size: 16px;
     color: #333;
@@ -168,10 +184,9 @@ export default class Index extends Vue {}
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-.list-des{
-    line-height: 24px;
+.list-des {
     color: #666;
-    letter-spacing: .93px;
+    letter-spacing: 0.93px;
     height: 72px;
     overflow: hidden;
     display: -webkit-box;
@@ -179,20 +194,21 @@ export default class Index extends Vue {}
     -webkit-box-orient: vertical;
     font-size: 13px;
 }
-.list-bottom{
+.list-bottom {
     display: flex;
     justify-content: space-between;
+    margin-top: 10px;
 }
-.list-name{
+.list-name {
     font-size: 13px;
     color: #999;
     letter-spacing: 1px;
     width: 125px;
     text-overflow: ellipsis;
     overflow: hidden;
-    white-space: nowra
+    white-space: nowra;
 }
-.list-type{
+.list-type {
     line-height: 20px;
     border: 1px solid #e6e6e6;
     border-radius: 2px;
@@ -201,3 +217,7 @@ export default class Index extends Vue {}
     font-size: 12px;
 }
 </style>
+
+
+
+
