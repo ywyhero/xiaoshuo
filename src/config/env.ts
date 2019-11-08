@@ -3,14 +3,14 @@ const CONFIG = {
         api: 'http://192.168.44.132:3000/api/story',
     },
     PROD: {
-        api: 'http://www.vinekan.com:3000/api/story',
+        api: 'http://47.105.109.192:3000/api/story',
     },
 };
 interface ConfigObj {
     api: string;
 }
 let  ENV: ConfigObj;
-if (window.location.href.includes('www.vinekan.com')) {
+if (window.location.href.includes('47.105.109.192')) {
     ENV = CONFIG.PROD;
 } else {
     ENV = CONFIG.LOCAL;
