@@ -2,8 +2,9 @@
     <div class="main">
         <div class="header">
             <div class="title">
-                <span class="title-val">Vine小说</span>
-                <span class="titl-des">高分小说聚集地</span>
+                <span class="title-val">Vine的个人空间</span>
+                <!-- <span class="titl-des">高分小说聚集地</span> -->
+                <span class="titl-des">看过并强烈推荐的高分小说</span>
             </div>
             <div class="search">
                 <input type="text" placeholder="请输入您想看的小说名称" class="search-input">
