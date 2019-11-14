@@ -9,5 +9,11 @@ const Common = {
     getContent(data: any) {
         return http('POST', '/getContent', data);
     },
+    getTypes(data: any) {
+        return http('POST', '/getTypes', data);
+    },
+    searchBooks(data: any) {
+        return http('POST', '/searchBooks', data);
+    },
 };
 export default Common;

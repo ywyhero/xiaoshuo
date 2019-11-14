@@ -1,5 +1,6 @@
 <template>
     <div class="chapter">
+        <vine-header></vine-header>
         <div class="chapter-header">
             <img class="chapter-img" :src="imgUrl" :alt="name">
             <div class="chapter-header-right">
@@ -24,7 +25,12 @@
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator';
 import Common from './../service/common';
-@Component({})
+import Header from './../components/header.vue';
+@Component({
+    components: {
+        'vine-header': Header,
+    },
+})
 export default class Chapter extends Vue {
     private name: string | Array<string | null> = '';
     private author: string | Array<string | null> = '';

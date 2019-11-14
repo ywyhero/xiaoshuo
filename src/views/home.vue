@@ -1,22 +1,10 @@
 <template>
     <div class="main">
-        <div class="header">
-            <div class="title">
-                <span class="title-val">Vine的个人空间</span>
-                <!-- <span class="titl-des">高分小说聚集地</span> -->
-                <span class="titl-des">看过并强烈推荐的高分小说</span>
-            </div>
-            <div class="search">
-                <input type="text" placeholder="请输入您想看的小说名称" class="search-input">
-                <div class="search-btn">
-                    <img class="search-img" src="./../assets/images/search.png" alt>
-                </div>
-            </div>
-        </div>
+        <vine-header></vine-header>
         <div class="books" v-for="(item, index) in books" :key="index">
             <div class="type">
                 <span class="type-val">{{item.title}}</span>
-                <span class="type-more">更多</span>
+                <span class="type-more" @click="toMore(item)">更多</span>
             </div>
             <div class="lists">
                 <div class="list" @click="toChapter(itm)" v-for="(itm, idx) in item.lists" :key="idx">
@@ -43,7 +31,12 @@
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator';
 import Common from '../service/common';
-@Component({})
+import Header from './../components/header.vue';
+@Component({
+    components: {
+        'vine-header': Header,
+    },
+})
 export default class Home extends Vue {
     private books: object[] = [];
     public created() {
@@ -56,66 +49,16 @@ export default class Home extends Vue {
     private toChapter(item: any) {
         this.$router.push(`/chapter?bookId=${item.bookId}&name=${item.name}&typeName=${item.typeName}&isOver=${item.isOver}&imgUrl=${item.imgUrl}&description=${item.description}&author=${item.author}`);
     }
+    private toMore(item: any) {
+        this.$router.push(`/more?isover=${item.isOver}`);
+    }
 }
 </script>
 <style lang="less" scoped>
 .main {
     width: 1200px;
     margin: 0 auto;
-}
-.header {
-    padding: 30px 0 0px;
-    display: flex;
-    align-items: center;
-}
-.header.active {
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 60px;
-    background: #fafafa;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-    width: 100%;
-    z-index: 99;
-}
-.title {
-    color: #d32f2f;
-    font-size: 32px;
-    font-weight: 700;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.titl-des {
-    font-size: 16px;
-    font-weight: normal;
-}
-.search {
-    border: 1px solid #e0e0e0;
-    border-top-left-radius: 2px;
-    border-bottom-left-radius: 2px;
-    line-height: 32px;
-    width: 283px;
-    border-right: 0 none;
-    padding-left: 14px;
-    font-size: 14px;
-    letter-spacing: 1px;
-    color: #333;
-    margin: 0 auto;
-    display: flex;
-}
-.search-input {
-    width: 100%;
-}
-.search-btn {
-    width: 40px;
-    height: 34px;
-    display: flex;
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
-    background: #d32f2f;
+    padding: 30px 0;
 }
 .books {
     margin-top: 40px;

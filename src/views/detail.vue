@@ -16,8 +16,8 @@
             <div class="content-main" v-html="chapter.content"></div>
             <div class="content-btn">
                 <span class="content-chapter content-box" @click="toChapter">目录</span>
-                <span class="content-pre content-box" @click="toPreChapter" v-if="chapterId > 1">上一章</span>
-                <span class="content-next content-box" @click="toNextChapter">下一章</span>
+                <span class="content-pre content-box" @click="toPreChapter" v-show="chapterId > 1">上一章</span>
+                <span class="content-next content-box" @click="toNextChapter" v-show="!isLast">下一章</span>
             </div>
         </div>
     </div>
@@ -32,6 +32,7 @@ export default class Detail extends Vue {
     private bookId: string | Array<string | null> = '';
     private author: string | Array<string | null> = '';
     private chapterIdNum: number = 0;
+    private isLast: boolean = false;
     private chapter: any = {};
     public created() {
         const query = this.$route.query;
@@ -45,6 +46,7 @@ export default class Detail extends Vue {
         const data: any = await Common.getContent({bookId: this.bookId, chapterId: this.chapterId});
         this.chapter = data.chapter;
         this.chapter.createTime = MkTime.format(this.chapter.createTime / 1000, 7);
+        this.isLast = this.chapter.isLast;
     }
     private toChapter() {
         this.$router.go(-1);
