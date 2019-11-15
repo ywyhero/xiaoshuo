@@ -22,7 +22,7 @@ export default class Header extends Vue {
     }
     private async searchBtn() {
         this.$router.push(`/search?search=${this.searchVal}`);
-        if(this.$route.path.includes('/search'))  {
+        if (this.$route.path.includes('/search'))  {
             window.location.reload();
         }
        
