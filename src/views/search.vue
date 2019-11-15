@@ -16,7 +16,7 @@
                                 <span class="search-list-tag">{{item.isOver === 1 ? '连载中' : '已完结'}}</span>
                             </div>
                             <span class="search-list-des">{{item.description}}</span>
-                            <span class="search-list-keyword"></span>
+                            <span class="search-list-keyword">{{item.keyword}}</span>
                         </div>
                     </div>
                     <span class="search-list-detail" @click="toDetail(item)">书籍详情</span>
