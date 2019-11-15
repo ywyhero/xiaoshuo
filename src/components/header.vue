@@ -5,17 +5,25 @@
             <span class="titl-des">看过并强烈推荐的高分小说</span>
         </div>
         <div class="search">
-            <input type="text" placeholder="请输入您想看的小说名称" class="search-input">
-            <div class="search-btn">
+            <input type="text" @keyup.enter="searchBtn" placeholder="请输入您想看的小说名称" v-model="searchVal" class="search-input">
+            <div class="search-btn" @click="searchBtn">
                 <img class="search-img" src="./../assets/images/search.png" alt>
             </div>
         </div>
     </div>
 </template>
 <script lang='ts'>
-import { Vue, Component, Prop } from 'vue-property-decorator';
+import { Vue, Component, Emit } from 'vue-property-decorator';
 @Component({})
 export default class Header extends Vue {
+    private searchVal: string | Array<string | null> = '';
+    public async created() {
+        this.searchVal = this.$route.query.search;
+    }
+    private async searchBtn() {
+        this.$router.push(`/search?search=${this.searchVal}`);
+        window.location.reload();
+    }
     private toHome() {
         location.href = '/';
     }
@@ -63,7 +71,7 @@ export default class Header extends Vue {
     font-size: 14px;
     letter-spacing: 1px;
     color: #333;
-    margin: 0 auto;
+    margin-left: 200px;
     display: flex;
 }
 .search-input {

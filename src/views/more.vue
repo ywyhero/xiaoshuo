@@ -58,6 +58,7 @@
                 :page-size="pageSize"
                 @current-change="handlerCurrentChange">
         </el-pagination>
+        <vine-footer></vine-footer>
     </div>
 </template>
 <script lang='ts'>
@@ -66,10 +67,12 @@ import Common from './../service/common';
 import MkTime from 'mktime';
 import { Pagination } from 'element-ui';
 import Header from './../components/header.vue';
+import Footer from './../components/footer.vue';
 @Component({
     components: {
         'el-pagination': Pagination,
         'vine-header': Header,
+        'vine-footer': Footer,
     },
 })
 export default class More extends Vue {
@@ -91,7 +94,7 @@ export default class More extends Vue {
         this.statusId = isOver;
         const item = this.status.find((v: any) => v.id === isOver);
         this.statusEvent(item, 'status');
-        this.searchBooks();
+        this.moreBooks();
     }
     private async getTypes() {
         const data: any = await Common.getTypes({
@@ -107,30 +110,38 @@ export default class More extends Vue {
     private async likeEvent(item: any) {
         this.currentId = item.id;
         this.typeId = 0;
+        const index = this.selectedLists.findIndex((v: any) => v.type === 'type');
+        if (index > -1) {
+            this.selectedLists.splice(index, 1);
+        }
         await this.getTypes();
-        await this.searchBooks();
+        await this.moreBooks();
     }
     private typeEvent(item: any, type: string) {
         this.typeId = item.id;
         const obj = Object.assign(item, { type });
         const index = this.selectedLists.findIndex((v: any) => v.type === obj.type);
-        if (index > -1) {
+        if (index > -1 && this.typeId !== 0) {
             this.selectedLists.splice(index, 1, obj);
-        } else {
+        } else if (index > -1 && this.typeId === 0) {
+            this.selectedLists.splice(index, 1);
+        } else if (this.typeId !== 0) {
             this.selectedLists.push(obj);
         }
-        this.searchBooks();
+        this.moreBooks();
     }
     private statusEvent(item: any, type: string) {
         this.statusId = item.id;
         const obj = Object.assign(item, { type });
         const index = this.selectedLists.findIndex((v: any) => v.type === obj.type);
-        if (index > -1) {
+        if (index > -1 && this.statusId !== 0) {
             this.selectedLists.splice(index, 1, obj);
-        } else {
+        } else if (index > -1 && this.statusId === 0) {
+            this.selectedLists.splice(index, 1);
+        } else if (this.statusId !== 0) {
             this.selectedLists.push(obj);
         }
-        this.searchBooks();
+        this.moreBooks();
     }
     private removeEvent(item: any) {
         if (item.type === 'status') {
@@ -141,14 +152,14 @@ export default class More extends Vue {
         }
         const index = this.selectedLists.findIndex((v: any) => v.type === item.type);
         this.selectedLists.splice(index, 1);
-        this.searchBooks();
+        this.moreBooks();
     }
-    private async searchBooks() {
+    private async moreBooks() {
         const typeSelected: any = this.selectedLists.filter((v: any) => v.type === 'type');
         const typeId = typeSelected.length > 0 && typeSelected[0].id || null;
         const statusSelected: any = this.selectedLists.filter((v: any) => v.type === 'status');
         const statusId = statusSelected.length > 0 && statusSelected[0].id || null;
-        const data: any = await Common.searchBooks({
+        const data: any = await Common.moreBooks({
             like: this.currentId,
             type: typeId,
             isOver: statusId,
@@ -171,7 +182,7 @@ export default class More extends Vue {
     private handlerCurrentChange(page: number) {
         this.currentPage = page;
         this.pageNo = page;
-        this.searchBooks();
+        this.moreBooks();
     }
 
 }
@@ -193,7 +204,10 @@ export default class More extends Vue {
 .more {
     width: 1200px;
     margin: 0 auto;
-    padding: 40px 0; 
+    padding: 40px 0 0px 0; 
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 .more-search{
     background: #f7f7f7;
@@ -265,12 +279,13 @@ export default class More extends Vue {
     margin-left: 5px;
 }
 .more-main{
-    min-height: 800px;
     margin-top: 40px;
+    margin-bottom: 20px;
     border: 1px solid #e6e6e6;
     padding: 0 20px 20px;
     font-size: 12px;
-    overflow: hidden
+    overflow: hidden;
+    flex: 1;
 }
 .more-books{
     display: flex;
@@ -300,6 +315,7 @@ export default class More extends Vue {
 .more-book-right{
     display: flex;
     flex-direction: column;
+    flex: 1;
 }
 .more-book-title{
     font-size: 20px;

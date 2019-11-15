@@ -1,34 +1,40 @@
 <template>
     <div class="chapter">
         <vine-header></vine-header>
-        <div class="chapter-header">
-            <img class="chapter-img" :src="imgUrl" :alt="name">
-            <div class="chapter-header-right">
-                <span class="chapter-header-name">{{name}}</span>
-                <div class="chapter-header-tag">
-                    <span class="chapter-header-is-over">{{isOver}}</span>
-                    <span class="chapter-header-type-name">{{typeName}}</span>
+        <div class="chapter-main">
+             <div class="chapter-header">
+                <img class="chapter-img" :src="imgUrl" :alt="name">
+                <div class="chapter-header-right">
+                    <span class="chapter-header-name">{{name}}</span>
+                    <div class="chapter-header-tag">
+                        <span class="chapter-header-is-over">{{isOver}}</span>
+                        <span class="chapter-header-type-name">{{typeName}}</span>
+                    </div>
+                    <span class="chapter-header-author">{{author}}</span>
+                    <span class="chapter-header-des">{{description}}</span>
                 </div>
-                <span class="chapter-header-author">{{author}}</span>
-                <span class="chapter-header-des">{{description}}</span>
+            </div>
+            <div class="chapter-val">
+                <i class="chapter-icon"></i>
+                正文
+            </div>
+            <div class="chapter-lists">
+                <div class="chapter-list" @click="toContent(item)" v-for="(item, index) in chapters" :key="index">{{item.name}}</div>
             </div>
         </div>
-        <div class="chapter-val">
-            <i class="chapter-icon"></i>
-            正文
-        </div>
-        <div class="chapter-lists">
-            <div class="chapter-list" @click="toContent(item)" v-for="(item, index) in chapters" :key="index">{{item.name}}</div>
-        </div>
+       
+        <vine-footer></vine-footer>
     </div>
 </template>
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator';
 import Common from './../service/common';
 import Header from './../components/header.vue';
+import Footer from './../components/footer.vue';
 @Component({
     components: {
         'vine-header': Header,
+        'vine-footer': Footer,
     },
 })
 export default class Chapter extends Vue {
@@ -64,7 +70,13 @@ export default class Chapter extends Vue {
 .chapter{
     width: 1200px;
     margin: 0 auto;
-    padding: 40px; 
+    padding: 40px 40px 0px 40px; 
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.chapter-main{
+    flex: 1;
 }
 .chapter-header{
     display: flex;

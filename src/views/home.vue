@@ -1,40 +1,45 @@
 <template>
     <div class="main">
         <vine-header></vine-header>
-        <div class="books" v-for="(item, index) in books" :key="index">
-            <div class="type">
-                <span class="type-val">{{item.title}}</span>
-                <span class="type-more" @click="toMore(item)">更多</span>
-            </div>
-            <div class="lists">
-                <div class="list" @click="toChapter(itm)" v-for="(itm, idx) in item.lists" :key="idx">
-                    <div class="list-left">
-                        <img
-                        :src="itm.imgUrl"
-                        :alt="itm.name"
-                        class="list-img"
-                        >
-                    </div>
-                    <div class="list-right">
-                            <span class="list-title">{{itm.name}}</span>
-                            <span class="list-des">{{itm.description}}</span>
-                        <div class="list-bottom">
-                            <span class="list-name">{{itm.author}}</span>
-                            <span class="list-type">{{itm.typeName}}</span>
+        <div class="books">
+            <div class="book" v-for="(item, index) in books" :key="index">
+                <div class="type">
+                    <span class="type-val">{{item.title}}</span>
+                    <span class="type-more" @click="toMore(item)">更多</span>
+                </div>
+                <div class="lists">
+                    <div class="list" @click="toChapter(itm)" v-for="(itm, idx) in item.lists" :key="idx">
+                        <div class="list-left">
+                            <img
+                            :src="itm.imgUrl"
+                            :alt="itm.name"
+                            class="list-img"
+                            >
+                        </div>
+                        <div class="list-right">
+                                <span class="list-title">{{itm.name}}</span>
+                                <span class="list-des">{{itm.description}}</span>
+                            <div class="list-bottom">
+                                <span class="list-name">{{itm.author}}</span>
+                                <span class="list-type">{{itm.typeName}}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <vine-footer></vine-footer>
     </div>
 </template>
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator';
 import Common from '../service/common';
 import Header from './../components/header.vue';
+import Footer from './../components/footer.vue';
 @Component({
     components: {
         'vine-header': Header,
+        'vine-footer': Footer,
     },
 })
 export default class Home extends Vue {
@@ -58,9 +63,15 @@ export default class Home extends Vue {
 .main {
     width: 1200px;
     margin: 0 auto;
-    padding: 30px 0;
+    padding: 40px 0 0 0;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 .books {
+    flex: 1;
+}
+.book{
     margin-top: 40px;
 }
 .lists {

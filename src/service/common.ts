@@ -12,8 +12,17 @@ const Common = {
     getTypes(data: any) {
         return http('POST', '/getTypes', data);
     },
+    moreBooks(data: any) {
+        return http('POST', '/moreBooks', data);
+    },
     searchBooks(data: any) {
         return http('POST', '/searchBooks', data);
+    },
+    setStory(data: any) {
+        return http('POST', '/setStory', data);
+    },
+    setOptions(data: any) {
+        return http('POST', '/setOptions', data);
     },
 };
 export default Common;

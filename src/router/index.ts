@@ -21,6 +21,18 @@ const routes = [
         path: '/more',
         name: 'more',
         component: () => import('./../views/more.vue'),
+    }, {
+        path: '/about',
+        name: 'about',
+        component: () => import('./../views/about.vue'),
+    }, {
+        path: '/option',
+        name: 'option',
+        component: () => import('./../views/option.vue'),
+    }, {
+        path: '/search',
+        name: 'search',
+        component: () => import('./../views/search.vue'),
     },
 ];
 
