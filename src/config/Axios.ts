@@ -4,6 +4,7 @@ import ENV from './env';
 Axios.defaults.timeout = 5000;
 // 请求域名
 Axios.defaults.baseURL = ENV.api || 'http://localhost:8080';
+console.log(ENV.api)
 // 请求头的content-type
 Axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 Axios.defaults.withCredentials = true;
