@@ -1,7 +1,6 @@
 import Axios from './Axios';
 const http = (type?: 'get' | 'GET' | 'delete' | 'DELETE' | 'head' | 'HEAD' | 'options' | 'OPTIONS' | 'post' | 'POST' | 'put' | 'PUT' | 'patch' | 'PATCH' | undefined, url?: string | undefined, data?: any) => {
     return new Promise ((resolve, reject) => {
-        console.log(url)
         Axios({
             method: type,
             url,

@@ -9,6 +9,7 @@ Axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded
 Axios.defaults.withCredentials = true;
 // aixos请求拦截
 Axios.interceptors.request.use((config: any) => {
+    console.log(config)
     return config;
 }, (err: object) => {
     return Promise.reject(err);
