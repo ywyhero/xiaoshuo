@@ -1,8 +1,8 @@
 <template>
     <div class="header">
         <div class="title" @click="toHome">
-            <span class="title-val">姚威宇的个人主页</span>
-            <span class="titl-des">看过并强烈推荐的高分小说</span>
+            <span class="title-val">Vine小说</span>
+            <span class="titl-des">强烈推荐的高分小说</span>
         </div>
         <div class="search">
             <input type="text" @keyup.enter="searchBtn" placeholder="请输入您想看的小说名称" v-model="searchVal" class="search-input">
@@ -14,6 +14,7 @@
 </template>
 <script lang='ts'>
 import { Vue, Component, Emit } from 'vue-property-decorator';
+import { Message } from 'element-ui';
 @Component({})
 export default class Header extends Vue {
     private searchVal: string | Array<string | null> = '';
@@ -21,6 +22,13 @@ export default class Header extends Vue {
         this.searchVal = this.$route.query.search;
     }
     private async searchBtn() {
+        if (!this.searchVal) {
+            Message({
+                type: 'error',
+                message: '请输入您看下的小说名称',
+            });
+            return;
+        }
         this.$router.push(`/search?search=${this.searchVal}`);
         if (this.$route.path.includes('/search')) {
             window.location.reload();

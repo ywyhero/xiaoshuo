@@ -55,6 +55,7 @@ export default class Chapter extends Vue {
         this.isOver = query.isOver === '1' ? '连载中' : '已完结';
         this.typeName = query.typeName;
         this.bookId = query.bookId;
+        document.title = `${this.name}-Vine小说 | ${this.name}最新章节`;
         this.getChapters();
     }
     private async getChapters() {
@@ -62,7 +63,7 @@ export default class Chapter extends Vue {
         this.chapters = data.chapters;
     }
     private toContent(item: any) {
-        this.$router.push(`/detail?chapterId=${item.chapterId}&bookId=${this.bookId}&author=${this.author}`);
+        this.$router.push(`/detail?chapterId=${item.chapterId}&bookId=${this.bookId}&author=${this.author}&bookName=${this.name}&chapterName=${item.name}`);
     }
 }
 </script>

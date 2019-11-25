@@ -40,6 +40,7 @@ export default class Detail extends Vue {
         this.chapterIdNum = this.chapterId;
         this.bookId = query.bookId;
         this.author = query.author;
+        document.title = `${query.bookName}-${query.chapterName} | 免费小说网`;
         this.getContent();
     }
     private async getContent() {

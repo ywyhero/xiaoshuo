@@ -2,7 +2,7 @@
     <div class="search">
         <vine-header></vine-header>
         <div class="search-main">
-            <div class="search-lists">
+            <div class="search-lists" v-if="books.length > 0">
                 <div class="search-list" v-for="(item, index) in books" :key="index">
                     <div class="search-list-info">
                         <img class="search-list-img" :src="item.imgUrl" :alt="item.name">
@@ -21,6 +21,10 @@
                     </div>
                     <span class="search-list-detail" @click="toDetail(item)">书籍详情</span>
                 </div>
+            </div>
+            <div class="search-empty" v-else>
+                <span>暂无您搜索的小说</span>
+                <span>请在下方点击关于本站，提供您想看的小说名称，本站会尽快更新。</span>
             </div>
         </div>
         <vine-footer></vine-footer>
@@ -44,6 +48,7 @@ export default class Search extends Vue {
     public created() {
         const query = this.$route.query;
         this.searchVal = query.search;
+        document.title = `${this.searchVal}-Vine小说 | 免费小说网`;
         this.searchBooks();
     }
     private async searchBooks() {
@@ -129,6 +134,16 @@ export default class Search extends Vue {
     color: #fff;
     background: #e84848;
     cursor: pointer;
+}
+.search-empty{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    font-size: 16px;
+    color: #333;
+    line-height: 2.5;
 }
 </style>
 
