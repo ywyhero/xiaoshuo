@@ -145,5 +145,11 @@ export default class Search extends Vue {
     color: #333;
     line-height: 2.5;
 }
+.search-list-keyword{
+    line-height: 24px;
+    color: #888;
+    letter-spacing: .86px;
+    font-size: 12px;
+}
 </style>
 

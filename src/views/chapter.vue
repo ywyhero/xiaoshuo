@@ -19,7 +19,7 @@
                 正文
             </div>
             <div class="chapter-lists">
-                <div class="chapter-list" @click="toContent(item)" v-for="(item, index) in chapters" :key="index">{{item.name}}</div>
+                <div class="chapter-list" @click="toContent(item)" v-for="(item, index) in chapters" :key="index">{{item.chapterName}}</div>
             </div>
         </div>
        
@@ -63,7 +63,7 @@ export default class Chapter extends Vue {
         this.chapters = data.chapters;
     }
     private toContent(item: any) {
-        this.$router.push(`/detail?chapterId=${item.chapterId}&bookId=${this.bookId}&author=${this.author}&bookName=${this.name}&chapterName=${item.name}`);
+        this.$router.push(`/detail?chapterId=${item.chapterId}&bookId=${this.bookId}&author=${this.author}&bookName=${this.name}&chapterName=${item.chapterName}`);
     }
 }
 </script>

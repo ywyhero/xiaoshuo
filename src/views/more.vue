@@ -94,7 +94,7 @@ export default class More extends Vue {
         this.statusId = isOver;
         const item = this.status.find((v: any) => v.id === isOver);
         this.statusEvent(item, 'status');
-        this.moreBooks();
+        // this.moreBooks();
     }
     private async getTypes() {
         const data: any = await Common.getTypes({
@@ -159,19 +159,19 @@ export default class More extends Vue {
         const typeId = typeSelected.length > 0 && typeSelected[0].id || null;
         const statusSelected: any = this.selectedLists.filter((v: any) => v.type === 'status');
         const statusId = statusSelected.length > 0 && statusSelected[0].id || null;
-        const data: any = await Common.moreBooks({
+        const { data }: any = await Common.moreBooks({
             like: this.currentId,
             type: typeId,
             isOver: statusId,
             pageNo: this.pageNo,
             pageSize: this.pageSize,
         });
-        this.books = data.data.books;
+        this.books = data.books;
         this.books = this.books.map((v: any) => ({
             ...v,
             createTime: MkTime.format(v.createTime, 7),
         }));
-        this.total = data.data.total;
+        this.total = data.total;
     }
     private toNewChapter(item: any) {
         this.$router.push(`/detail?chapterId=${item.newChapter.chapterId}&bookId=${item.bookId}&author=${item.author}`);

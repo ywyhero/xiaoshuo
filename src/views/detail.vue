@@ -3,7 +3,7 @@
         <div class="content-page">
             <i class="content-icon"></i>
             <div class="content-title">
-                <div class="content-name">{{chapter.name}}</div>
+                <div class="content-name">{{chapter.chapterName}}</div>
                 <div class="content-des">
                     <div class="content-author">
                         作者：<span class="content-author-val">{{author}}</span> |
@@ -30,6 +30,7 @@ import MkTime from 'mktime';
 export default class Detail extends Vue {
     private chapterId: string | Array<string | null> | number = '';
     private bookId: string | Array<string | null> = '';
+    private bookName: string | Array<string | null> = '';
     private author: string | Array<string | null> = '';
     private chapterIdNum: number = 0;
     private isLast: boolean = false;
@@ -39,27 +40,28 @@ export default class Detail extends Vue {
         this.chapterId = Number(query.chapterId);
         this.chapterIdNum = this.chapterId;
         this.bookId = query.bookId;
+        this.bookName = query.bookName;
         this.author = query.author;
-        document.title = `${query.bookName}-${query.chapterName} | 免费小说网`;
         this.getContent();
     }
     private async getContent() {
         const data: any = await Common.getContent({bookId: this.bookId, chapterId: this.chapterId});
         this.chapter = data.chapter;
-        this.chapter.createTime = MkTime.format(this.chapter.createTime / 1000, 7);
+        this.chapter.createTime = MkTime.format(this.chapter.createTime, 7);
         this.isLast = this.chapter.isLast;
+        document.title = `${this.bookName}-${this.chapter.chapterName} | 免费小说网`;
     }
     private toChapter() {
         this.$router.go(-1);
     }
     private toPreChapter() {
         this.chapterIdNum = this.chapterIdNum - 1;
-        this.$router.replace(`/detail?chapterId=${this.chapterIdNum}&bookId=${this.bookId}&author=${this.author}`);
+        this.$router.replace(`/detail?chapterId=${this.chapterIdNum}&bookName=${this.bookName}&bookId=${this.bookId}&author=${this.author}`);
         window.location.reload();
     }
     private toNextChapter() {
         this.chapterIdNum = this.chapterIdNum + 1;
-        this.$router.replace(`/detail?chapterId=${this.chapterIdNum}&bookId=${this.bookId}&author=${this.author}`);
+        this.$router.replace(`/detail?chapterId=${this.chapterIdNum}&bookName=${this.bookName}&bookId=${this.bookId}&author=${this.author}`);
         window.location.reload();
     }
 }
