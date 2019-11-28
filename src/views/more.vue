@@ -43,7 +43,7 @@
                             <span class="more-book-time">{{item.createTime}}</span>
                         </div>
                         <span class="more-book-des">{{item.description}}</span>
-                        <span class="more-book-new" @click="toNewChapter(item)">最新章节: {{item.newChapter.name}}</span>
+                        <span class="more-book-new" @click="toNewChapter(item)">最新章节: {{item.newChapter.chapterName}}</span>
                     </div>
                 </div>
                 <div class="more-empty" v-show="books.length === 0">暂无数据</div>
