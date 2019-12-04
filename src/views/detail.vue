@@ -61,7 +61,7 @@ export default class Detail extends Vue {
     }
     private toNextChapter() {
         this.chapterIdNum = this.chapterIdNum + 1;
-        this.$router.replace(`/detail?chapterId=${this.chapterIdNum}&bookName=${this.bookName}&bookId=${this.bookId}&author=${this.author}`);
+        this.$router.replace(`/detail?chapterId=${this.chapterIdNum}&chapterName=${this.chapter.chapterName}&bookName=${this.bookName}&bookId=${this.bookId}&author=${this.author}`);
         window.location.reload();
     }
 }
