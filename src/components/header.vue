@@ -81,7 +81,7 @@ export default class Header extends Vue {
     font-size: 14px;
     letter-spacing: 1px;
     color: #333;
-    margin-left: 200px;
+    margin-left: 30%;
     display: flex;
 }
 .search-input {
@@ -95,5 +95,14 @@ export default class Header extends Vue {
     align-items: center;
     justify-content: center;
     background: #d32f2f;
+}
+@media screen and (max-width: 720px){
+    .header{
+        flex-direction: column;
+    }
+    .search{
+        margin-left: 0;
+        margin-top: 20px;
+    }
 }
 </style>

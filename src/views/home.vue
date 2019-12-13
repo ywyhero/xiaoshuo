@@ -61,9 +61,8 @@ export default class Home extends Vue {
 </script>
 <style lang="less" scoped>
 .main {
-    width: 1200px;
     margin: 0 auto;
-    padding: 40px 0 0 0;
+    padding: 20px;
     min-height: 100%;
     display: flex;
     flex-direction: column;
@@ -170,6 +169,13 @@ export default class Home extends Vue {
     padding: 0 5px;
     color: #999;
     font-size: 12px;
+}
+@media screen and (max-width: 720px){
+    .main{
+        
+    }
+    
+    
 }
 </style>
 

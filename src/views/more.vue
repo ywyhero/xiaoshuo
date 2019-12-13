@@ -202,9 +202,8 @@ export default class More extends Vue {
 
 <style lang="less" scoped>
 .more {
-    width: 1200px;
     margin: 0 auto;
-    padding: 40px 0 0px 0; 
+    padding: 20px; 
     min-height: 100%;
     display: flex;
     flex-direction: column;
@@ -247,6 +246,7 @@ export default class More extends Vue {
     width: 1020px;
     color: #888;
     display: flex;
+    flex-wrap: wrap;
 }
 .more-type{
     color: #151515;
@@ -282,7 +282,7 @@ export default class More extends Vue {
     margin-top: 40px;
     margin-bottom: 20px;
     border: 1px solid #e6e6e6;
-    padding: 0 20px 20px;
+    padding: 20px;
     font-size: 12px;
     overflow: hidden;
     flex: 1;
@@ -353,5 +353,15 @@ export default class More extends Vue {
 }
 .more-book-new:hover{
     color: #e84848;
+}
+@media screen and (max-width: 720px){
+    .more-val{
+        width: 245px;
+    }
+    .more-empty{
+        height: auto;
+        line-height: normal;
+    }
+    
 }
 </style>

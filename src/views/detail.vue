@@ -76,13 +76,13 @@ export default class Detail extends Vue {
     overflow-y: auto;
 }
 .content-page{
-    width: 960px;
     font-size: 14px;
     color: #333;
     margin: 0 auto;
     background: #faeed7;
     box-shadow: 0 2px 20px 0 rgba(0,0,0,.05);
     position: relative;
+    padding: 20px;
 }
 .content-icon{
     width: 17px;
@@ -139,7 +139,6 @@ export default class Detail extends Vue {
     letter-spacing: 1px;
     line-height: 2em;
     text-indent: 2em;
-    padding: 20px 40px;
     white-space: pre-wrap;
 }
 .content-btn {
@@ -171,5 +170,11 @@ export default class Detail extends Vue {
 }
 .content-next{
     width: 370px;
+}
+@media screen and (max-width: 720px){
+    .content{
+        padding-top: 0;
+        padding-bottom: 0;
+    }
 }
 </style>

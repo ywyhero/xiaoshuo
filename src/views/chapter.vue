@@ -69,7 +69,6 @@ export default class Chapter extends Vue {
 </script>
 <style lang="less" scoped>
 .chapter{
-    width: 1200px;
     margin: 0 auto;
     padding: 40px 40px 0px 40px; 
     min-height: 100%;
@@ -167,5 +166,10 @@ export default class Chapter extends Vue {
     border-bottom: 1px #ccc dotted;
     color: #333;
     cursor: pointer;
+}
+@media screen and (max-width: 720px){
+    .chapter-list{
+        width: 100%;
+    }
 }
 </style>
