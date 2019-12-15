@@ -76,7 +76,7 @@ export default class Home extends Vue {
 .lists {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    // justify-content: space-between;
 }
 .type {
     border-bottom: 1px solid #e6e6e6;
