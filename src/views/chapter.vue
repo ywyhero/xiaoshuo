@@ -171,5 +171,30 @@ export default class Chapter extends Vue {
     .chapter-list{
         width: 100%;
     }
+    .chapter-img{
+        margin-right: 10px;
+        width: 100px;
+    }
+    .chapter-header-name{
+        margin-bottom: 5px;
+        font-size: 18px;
+    }
+    .chapter-header-tag{
+        margin-bottom: 5px;
+    }
+    .chapter-header-author{
+        margin-bottom: 5px;
+        font-size: 14px;
+    }
+    .chapter-header-des{
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        line-height: normal; 
+        margin-bottom: 5px;
+        max-height: none; 
+    }
 }
 </style>
