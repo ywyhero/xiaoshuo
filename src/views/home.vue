@@ -76,6 +76,7 @@ export default class Home extends Vue {
 .lists {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
 .type {
     border-bottom: 1px solid #e6e6e6;
@@ -100,16 +101,15 @@ export default class Home extends Vue {
     letter-spacing: 1px;
 }
 .list {
-    width: 332px;
+    width: 33.3%;
     height: 128px;
     margin: 30px 0 10px;
     display: flex;
-    margin-right: 102px;
     cursor: pointer;
 }
-.list:nth-of-type(3n) {
-    margin-right: 0;
-}
+// .list:nth-of-type(3n) {
+//     margin-right: 0;
+// }
 .list-left {
     width: 95px;
     height: 126px;
@@ -171,11 +171,19 @@ export default class Home extends Vue {
     font-size: 12px;
 }
 @media screen and (max-width: 720px){
-    .main{
-        
-    }
-    
-    
+   .list{
+       width: 100%;
+   } 
+}
+@media screen and (min-width: 721px) and (max-width: 920px){
+   .list{
+       width: 50%;
+   } 
+}
+@media screen and (min-width: 1100px) {
+   .list{
+       width: 33.3%;
+   } 
 }
 </style>
 
