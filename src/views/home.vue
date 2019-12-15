@@ -175,7 +175,7 @@ export default class Home extends Vue {
        width: 100%;
    } 
 }
-@media screen and (min-width: 721px) and (max-width: 1009px){
+@media screen and (min-width: 721px) and (max-width: 1099px){
    .list{
        width: 50%;
    } 
