@@ -7,7 +7,7 @@
         </div>
         
         <span class="footer-val">本站所有小说为转载作品，所有章节均由网友上传，转载至本站只是为了宣传本书让更多读者欣赏。如有版权问题，请联系本站，即时删除相关小说。</span>  
-        <span class="footer-val"> Copyright©www.vinekan.com All Rights Reserved 版权所有 | 苏ICP备19067612号</span>
+        <span class="footer-val"> Copyright©www.vinekan.com All Rights Reserved 版权所有 | <a href="http://www.beian.miit.gov.cn" target="_blank">苏ICP备19067612号</a></span>
     </div>
 </template>
 <script lang='ts'>
