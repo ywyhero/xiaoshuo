@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import ENV from './env';
 // 请求时间
-Axios.defaults.timeout = 10000;
+Axios.defaults.timeout = 100000;
 // 请求域名
 Axios.defaults.baseURL = ENV.api || 'http://localhost:8080';
 // 请求头的content-type
