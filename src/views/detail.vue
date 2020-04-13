@@ -74,6 +74,7 @@ export default class Detail extends Vue {
     padding-top: 60px;
     padding-bottom: 60px;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 .content-page{
     font-size: 14px;
