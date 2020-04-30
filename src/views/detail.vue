@@ -59,7 +59,7 @@ export default class Detail extends Vue {
         this.chapterIdNum = this.chapterIdNum - 1;
         this.$router.replace(`/detail`);
         let obj = {
-            chapterId: this.chapterIdNum
+            chapterId: this.chapterIdNum,
             bookName: this.bookName,
             bookId: this.bookId,
             author: this.author
@@ -72,7 +72,7 @@ export default class Detail extends Vue {
         this.chapterIdNum = this.chapterIdNum + 1;
         this.$router.replace(`/detail`);
         let obj = {
-            chapterId: this.chapterIdNum
+            chapterId: this.chapterIdNum,
             bookName: this.bookName,
             bookId: this.bookId,
             author: this.author
