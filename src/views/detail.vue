@@ -57,12 +57,28 @@ export default class Detail extends Vue {
     }
     private toPreChapter() {
         this.chapterIdNum = this.chapterIdNum - 1;
-        this.$router.replace(`/detail?chapterId=${this.chapterIdNum}&bookName=${this.bookName}&bookId=${this.bookId}&author=${this.author}`);
+        this.$router.replace(`/detail`);
+        let obj = {
+            chapterId: this.chapterIdNum
+            bookName: this.bookName,
+            bookId: this.bookId,
+            author: this.author
+        }
+        window.sessionStorage.setItem('chapterInfo', JSON.stringify(obj))
+        window.sessionStorage.setItem('lastestChapter', JSON.stringify(obj))
         window.location.reload();
     }
     private toNextChapter() {
         this.chapterIdNum = this.chapterIdNum + 1;
-        this.$router.replace(`/detail?chapterId=${this.chapterIdNum}&bookName=${this.bookName}&bookId=${this.bookId}&author=${this.author}`);
+        this.$router.replace(`/detail`);
+        let obj = {
+            chapterId: this.chapterIdNum
+            bookName: this.bookName,
+            bookId: this.bookId,
+            author: this.author
+        }
+        window.sessionStorage.setItem('chapterInfo', JSON.stringify(obj))
+        window.sessionStorage.setItem('lastestChapter', JSON.stringify(obj))
         window.location.reload();
     }
 }
