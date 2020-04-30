@@ -48,12 +48,21 @@ export default class Home extends Vue {
         this.getBooks();
     }
     private async getBooks() {
-        const data: any = await Common.getBooks({});
-        this.books = data.data.books;
-	console.log(this.books)
+        const {data}: any = await Common.getBooks({});
+        this.books = data.books;
     }
     private toChapter(item: any) {
-        this.$router.push(`/chapter?bookId=${item.bookId}&name=${item.name}&typeName=${item.typeName}&isOver=${item.isOver}&imgUrl=${item.imgUrl}&description=${item.description}&author=${item.author}`);
+        this.$router.push(`/chapter`);
+        let obj = {
+            bookId: item.bookId,
+            name: item.name,
+            typeName: item.typeName,
+            isOver: item.isOver,
+            imgUrl: item.imgUrl,
+            description: item.description,
+            author: item.author
+        }
+        window.sessionStorage.setItem('bookInfo', JSON.stringify(obj));
     }
     private toMore(item: any) {
         this.$router.push(`/more?isover=${item.isOver}`);
