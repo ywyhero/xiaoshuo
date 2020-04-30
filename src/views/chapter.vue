@@ -29,7 +29,7 @@
                 v-show="total > pageSize"
                 class="chapter-pagination"
                 :total="total"
-                :current-page="pageSize"
+                :current-page="pageNo"
                 layout="pager"
                 :page-size="pageSize"
                 @current-change="pageChange">
