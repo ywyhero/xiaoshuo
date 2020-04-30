@@ -177,7 +177,17 @@ export default class More extends Vue {
         this.$router.push(`/detail?chapterId=${item.newChapter.chapterId}&bookId=${item.bookId}&author=${item.author}`);
     }
     private toChapter(item: any) {
-        this.$router.push(`/chapter?bookId=${item.bookId}&name=${item.name}&typeName=${item.typeName}&isOver=${item.isOver}&imgUrl=${item.imgUrl}&description=${item.description}&author=${item.author}`);
+        this.$router.push(`/chapter`);
+        let obj = {
+            bookId: item.bookId,
+            name: item.name,
+            typeName: item.typeName,
+            isOver: item.isOver,
+            imgUrl: item.imgUrl,
+            description: item.description,
+            author: item.author
+        }
+        window.sessionStorage.setItem('bookInfo', JSON.stringify(obj));
     }
     private handlerCurrentChange(page: number) {
         this.currentPage = page;
