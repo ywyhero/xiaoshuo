@@ -36,12 +36,13 @@ export default class Detail extends Vue {
     private isLast: boolean = false;
     private chapter: any = {};
     public created() {
-        const query = this.$route.query;
-        this.chapterId = Number(query.chapterId);
+        let  chapterInfo: any = window.sessionStorage.getItem('chapterInfo');
+        chapterInfo = JSON.parse(chapterInfo)
+        this.chapterId = Number(chapterInfo.chapterId);
         this.chapterIdNum = this.chapterId;
-        this.bookId = query.bookId;
-        this.bookName = query.bookName;
-        this.author = query.author;
+        this.bookId = chapterInfo.bookId;
+        this.bookName = chapterInfo.bookName;
+        this.author = chapterInfo.author;
         this.getContent();
     }
     private async getContent() {
