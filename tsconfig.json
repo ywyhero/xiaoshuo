@@ -14,11 +14,11 @@
     "types": [
       "webpack-env"
     ],
-    "paths": {
+    "paths": [{
       "@/*": [
         "src/*"
       ]
-    },
+    }],
     "lib": [
       "esnext",
       "dom",

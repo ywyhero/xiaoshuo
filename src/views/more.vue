@@ -54,7 +54,7 @@
                 class="more-pagination"
                 :total="total"
                 :current-page="currentPage"
-                layout="prev, pager, next"
+                layout="pager"
                 :page-size="pageSize"
                 @current-change="handlerCurrentChange">
         </el-pagination>

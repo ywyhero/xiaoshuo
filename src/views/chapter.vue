@@ -25,16 +25,15 @@
             <div class="chapter-lists">
                 <div class="chapter-list" @click="toContent(item)" v-for="(item, index) in chapters" :key="index">{{item.chapterName}}</div>
             </div>
-            <van-pagination
-                v-model="pageNo"
-                :prev-text="' '"
-                :next-text="' '"
-                :total-items="total"
-                :show-page-size="5"
-                :items-per-page="pageSize"
-                force-ellipses
-                @change="pageChange"
-            />
+            <el-pagination
+                v-show="total > pageSize"
+                class="chapter-pagination"
+                :total="total"
+                :current-page="pageSize"
+                layout="pager"
+                :page-size="pageSize"
+                @current-change="pageChange">
+        </el-pagination>
         </div>
        
         <vine-footer></vine-footer>
@@ -46,13 +45,12 @@ import { Component, Vue } from 'vue-property-decorator';
 import Common from './../service/common';
 import Header from './../components/header.vue';
 import Footer from './../components/footer.vue';
-import { Pagination } from 'vant';
-import 'vant/lib/pagination/style';
-Vue.use(Pagination);
+import { Pagination } from 'element-ui';
 @Component({
     components: {
         'vine-header': Header,
         'vine-footer': Footer,
+        'el-pagination': Pagination,
     },
 })
 export default class Chapter extends Vue {
@@ -107,19 +105,23 @@ export default class Chapter extends Vue {
         window.sessionStorage.setItem('chapterInfo', JSON.stringify(obj))
         window.sessionStorage.setItem('lastestChapter', JSON.stringify(item))
     }
-    private async pageChange () {
+    private async pageChange (page: number) {
+        this.pageNo = page
         await this.getChapters()
     }
 }
 </script>
 <style lang="less">
 .chapter{
-    .van-pagination .van-pagination__item--active{
-        background-color:#d32f2f;
-        color: #fff;
-    }
-    .van-pagination__item{
-        color: #d32f2f;
+    .chapter-pagination{
+        margin-top: 20px;
+        text-align: center;
+        .el-pager li.active{
+            color: #e84848;
+        }
+        .el-pager li:hover {
+            color: #e84848;
+        }
     }
 }
 </style>
