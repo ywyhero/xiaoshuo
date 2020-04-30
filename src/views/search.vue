@@ -58,7 +58,17 @@ export default class Search extends Vue {
         this.books = data.books;
     }
     private toDetail(item: any) {
-        this.$router.push(`/chapter?bookId=${item.bookId}&name=${item.name}&typeName=${item.typeName}&isOver=${item.isOver}&imgUrl=${item.imgUrl}&description=${item.description}&author=${item.author}`);
+        this.$router.push(`/chapter`);
+        let obj = {
+            bookId: item.bookId,
+            name: item.name,
+            typeName: item.typeName,
+            isOver: item.isOver,
+            imgUrl: item.imgUrl,
+            description: item.description,
+            author: item.author
+        }
+        window.sessionStorage.setItem('bookInfo', JSON.stringify(obj));
     }
 }
 </script>
