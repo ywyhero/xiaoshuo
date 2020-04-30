@@ -18,7 +18,7 @@
                 <i class="chapter-icon"></i>
                 正文
             </div>
-            <div class="chapter-lastest">
+            <div class="chapter-lastest" v-show="lastestChapter.chapterName">
                 <span class="chapter-lastest-val">上次看的章节：</span>
                 <span class="chapter-lastest-val" @click="toContent(lastestChapter)">{{lastestChapter.chapterName}}</span>
             </div>
