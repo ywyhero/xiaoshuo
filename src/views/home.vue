@@ -62,7 +62,7 @@ export default class Home extends Vue {
             description: item.description,
             author: item.author
         }
-        window.sessionStorage.setItem('bookInfo', JSON.stringify(obj));
+        window.localStorage.setItem('bookInfo', JSON.stringify(obj));
     }
     private toMore(item: any) {
         this.$router.push(`/more?isover=${item.isOver}`);

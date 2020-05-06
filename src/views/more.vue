@@ -187,7 +187,7 @@ export default class More extends Vue {
             description: item.description,
             author: item.author
         }
-        window.sessionStorage.setItem('bookInfo', JSON.stringify(obj));
+        window.localStorage.setItem('bookInfo', JSON.stringify(obj));
     }
     private handlerCurrentChange(page: number) {
         this.currentPage = page;

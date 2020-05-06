@@ -68,7 +68,7 @@ export default class Search extends Vue {
             description: item.description,
             author: item.author
         }
-        window.sessionStorage.setItem('bookInfo', JSON.stringify(obj));
+        window.localStorage.setItem('bookInfo', JSON.stringify(obj));
     }
 }
 </script>

@@ -67,7 +67,7 @@ export default class Chapter extends Vue {
     private total: Number = 0;
     private chapters: object[] = [];
     public created() {
-        let  bookInfo: any = window.sessionStorage.getItem('bookInfo');
+        let  bookInfo: any = window.localStorage.getItem('bookInfo');
         bookInfo = JSON.parse(bookInfo);
         this.name = bookInfo.name;
         this.author = bookInfo.author;
@@ -78,8 +78,8 @@ export default class Chapter extends Vue {
         this.bookId = bookInfo.bookId;
         document.title = `${this.name}-Vine小说 | ${this.name}最新章节`;
         let lastestChapter: any = {};
-        if(window.sessionStorage.getItem('lastestChapter')){
-            lastestChapter = window.sessionStorage.getItem('lastestChapter')
+        if(window.localStorage.getItem('lastestChapter')){
+            lastestChapter = window.localStorage.getItem('lastestChapter')
             this.lastestChapter = JSON.parse(lastestChapter);
         }
         this.getChapters();
@@ -102,8 +102,8 @@ export default class Chapter extends Vue {
             bookName: this.name,
             chapterName: item.chapterName
         }
-        window.sessionStorage.setItem('chapterInfo', JSON.stringify(obj))
-        window.sessionStorage.setItem('lastestChapter', JSON.stringify(item))
+        window.localStorage.setItem('chapterInfo', JSON.stringify(obj))
+        window.localStorage.setItem('lastestChapter', JSON.stringify(item))
     }
     private async pageChange (page: number) {
         this.pageNo = page

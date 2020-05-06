@@ -36,7 +36,7 @@ export default class Detail extends Vue {
     private isLast: boolean = false;
     private chapter: any = {};
     public created() {
-        let  chapterInfo: any = window.sessionStorage.getItem('chapterInfo');
+        let  chapterInfo: any = window.localStorage.getItem('chapterInfo');
         chapterInfo = JSON.parse(chapterInfo)
         this.chapterId = Number(chapterInfo.chapterId);
         this.chapterIdNum = this.chapterId;
@@ -63,8 +63,8 @@ export default class Detail extends Vue {
             bookId: this.bookId,
             author: this.author
         }
-        window.sessionStorage.setItem('chapterInfo', JSON.stringify(obj))
-        window.sessionStorage.setItem('lastestChapter', JSON.stringify(obj))
+        window.localStorage.setItem('chapterInfo', JSON.stringify(obj))
+        window.localStorage.setItem('lastestChapter', JSON.stringify(obj))
         window.location.reload();
     }
     private toNextChapter() {
@@ -75,8 +75,8 @@ export default class Detail extends Vue {
             bookId: this.bookId,
             author: this.author
         }
-        window.sessionStorage.setItem('chapterInfo', JSON.stringify(obj))
-        window.sessionStorage.setItem('lastestChapter', JSON.stringify(obj))
+        window.localStorage.setItem('chapterInfo', JSON.stringify(obj))
+        window.localStorage.setItem('lastestChapter', JSON.stringify(obj))
         window.location.reload();
     }
 }
